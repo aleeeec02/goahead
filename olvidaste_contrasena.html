@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restablecer Contraseña</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="reset-password-container">
+        <h2>Restablecer Contraseña</h2>
+        <p>Introduce tu dirección de correo electrónico y te enviaremos instrucciones para restablecer tu contraseña.</p>
+        
+        <form action="endpoint_para_enviar_email.php" method="POST">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <input type="submit" value="Enviar instrucciones">
+        </form>
+    </div>
+</body>
+</html>

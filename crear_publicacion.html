@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Publicación</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <div class="post-container">
+        <h2>Crear Publicación</h2>
+        
+        <form id="postForm" action="endpoint_para_publicaciones.php" method="POST">
+            <label for="title">Título:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="content">Contenido:</label>
+            <textarea id="content" name="content" rows="10" required></textarea>
+            
+            <input type="submit" value="Publicar">
+        </form>
+    </div>
+</body>
+</html>
