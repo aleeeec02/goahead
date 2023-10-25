@@ -1,4 +1,7 @@
 const express = require('express');
+const path = require('path'); // path relativo
+
+
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const helmet = require('helmet');
@@ -7,7 +10,7 @@ const bcrypt = require('bcrypt');
 const { Pool } = require('pg');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3002;
 
 // Configuraciones iniciales
 app.use(bodyParser.json());
@@ -30,7 +33,8 @@ const pool = new Pool({
 });
 
 app.get('/', (req, res) => {
-  res.send('¡Hola Mundo!');
+  res.sendFile(__dirname + '/index.html');
+
 });
 
 // Ruta de Registro
@@ -88,5 +92,5 @@ app.use(express.static(__dirname));
 
 // Sirve iniciar-sesion.html to express
 app.get('/iniciar-sesion', (req, res) => {
-  res.sendFile('D:\@aleeeec02\goahead code\iniciar_sesion.html');
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
