@@ -1,96 +1,78 @@
-const express = require('express');
-const path = require('path'); // path relativo
+// Servidor en localhost
+require('dotenv').config();
 
-
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const helmet = require('helmet');
-const csurf = require('csurf');
-const bcrypt = require('bcrypt');
-const { Pool } = require('pg');
-
+const express = require("express");
+const path = require("path");
 const app = express();
-const PORT = 3002;
+let PORT = process.env.PORT || 3002;
+const MAX_PORT = 3010;
 
-// Configuraciones iniciales
+app.use(express.static(path.join(__dirname)));
+
+// Sesiones de usuario; Iniciar sesión, Registro
+const Sequelize = require("sequelize");
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+// Configuración de Passport con la estrategia de Google
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://ec2-13-59-59-88.us-east-2.compute.amazonaws.com/auth/google/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    // Implementar la lógica para encontrar o crear un usuario
+    // Ejemplo: done(null, profile);
+  }
+));
+
+// Ruta de autenticación de Google
+app.get("/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+// Ruta de callback después de la autenticación de Google
+app.get("/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  function(req, res) {
+    // Redirigir al usuario a la página deseada después de la autenticación exitosa
+    res.redirect("/");
+  }
+);
+
+// REST API middleware
+const bodyParser = require("body-parser");
+
+// Utilizando middleware `bodyParser` para manejar solicitudes entrantes
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); // Para manejar datos de formularios
-app.use(helmet());
-app.use(session({
-  secret: 'tu_secreto_aqui',
-  resave: false,
-  saveUninitialized: true,
-}));
-app.use(csurf());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Configuración de la conexión con PostgreSQL
-const pool = new Pool({
-  user: 'tu_usuario',
-  host: 'localhost',
-  database: 'tu_base_de_datos',
-  password: 'tu_contraseña',
-  port: 5432,
+// Initialize Passport
+app.use(passport.initialize());
+
+// Ruta principal
+app.get("/", (req, res) => {
+    res.send("¡Servidor funcionando :V!");
 });
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+// Función para iniciar el servidor en un puerto disponible
+const startServer = (port) => {
+    const server = app.listen(port, '0.0.0.0', () => {
+        console.log(`El servidor está escuchando en http://localhost:${server.address().port}`);
+    }).on("error", (err) => {
+        if (err.code === "EADDRINUSE" && port < MAX_PORT) {
+            console.log(`El puerto ${port} está en uso, intentando con el puerto ${port + 1}...`);
+            startServer(port + 1);
+        } else {
+            console.error("Error al iniciar el servidor:", err);
+        }
+    });
+};
 
+// Conexión a la base de datos con Sequelize
+const sequelize = new Sequelize('postgres://username:password@localhost:5432/yourdbname', {
+  dialect: 'postgres',
 });
 
-// Ruta de Registro
-app.post('/register', async (req, res) => {
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const result = await pool.query('INSERT INTO users (username, password) VALUES ($1, $2)', [req.body.username, hashedPassword]);
-    res.status(201).send("Usuario registrado con éxito");
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error al registrar al usuario");
-  }
-});
+// Inicializar el servidor
+startServer(PORT);
 
-// Ruta de Inicio de Sesión
-app.post('/login', async (req, res) => {
-  const user = await pool.query('SELECT * FROM users WHERE username = $1', [req.body.username]);
-  
-  if (user.rows.length > 0 && await bcrypt.compare(req.body.password, user.rows[0].password)) {
-    req.session.userId = user.rows[0].id;
-    res.status(200).send("Ingreso exitoso");
-  } else {
-    res.status(403).send("Usuario o contraseña incorrectos");
-  }
-});
-
-// Ruta para Cerrar Sesión
-app.post('/logout', (req, res) => {
-  req.session.destroy();
-  res.status(200).send("Sesión cerrada con éxito");
-});
-
-// Middleware de autenticación
-function checkAuth(req, res, next) {
-  if (req.session.userId) {
-    return next();
-  } else {
-    res.status(401).send("No estás autorizado");
-  }
-}
-
-// Ruta protegida (ejemplo)
-app.get('/dashboard', checkAuth, (req, res) => {
-  res.send('Este es el dashboard del usuario');
-});
-
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
-
-
-// Sirve archivos estáticos desde el directorio
-app.use(express.static(__dirname));
-
-
-// Sirve iniciar-sesion.html to express
-app.get('/iniciar-sesion', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});

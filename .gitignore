@@ -1,0 +1,7 @@
+# Archivos de entorno
+.env
+
+node_modules/
+dist/
+build/
+

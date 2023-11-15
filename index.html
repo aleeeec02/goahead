@@ -1,34 +1,235 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>goAhead - Comunidad de Viajeros</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="./css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;500&display=swap" rel="stylesheet">
+    <title>Document</title>
+    
 </head>
-<body class="white-body">
-    <div class="container">
-        <h1>Bienvenido a goAhead</h1>
-        <p>Únete a la comunidad de viajeros más apasionada</p>
+<body>
+    <header class="header" id="Inicio">
+        <div class="logo-principal">
+            <img href="#Inicio" src="./static/logo-goAhead.png" alt="" width="70px">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#Inicio">Inicio</a></li>
+                <li><a href="#Comunidad">Comunidad</a></li>
+                <li><a href="#Recursos">Recursos</a></li>
+                <li><a href="#Acerca">Acerca de</a></li>
+                <li><a href="#Features">Features</a></li>
+                <li><a href="#Contacto">Contacto</a></li>
+                <a href="#" class="btn-login">Acceder</a>
+            </ul>
+        </nav>
+    </header>
+    <section class="principal-inicio">
+        <div class="texto-presentacion">
+            <div class="texto-presentacion-interior">
+                <h1>goAhead</h1>
+                <p>Plataforma en línea que ha sido creada para reunir apasionados viajeros y trotamundos en un espacio interactivo y enriquecedor</p>
+                <a href="href="/auth/google" class="btn-login">Acceder</a>
+            </div>
+        </div>
+        <div class="imagen-presentacion">
+            <img src="static/primera-section.png" alt="" width="900px" height="480">
+        </div>
+    </section>
+    <section class="comunidad" id="Comunidad">
+        <div class="imagen-presentacion">
+            <img src="static/comunidad-section.png" alt="" width="700px" height="500">
+        </div>
+        <div class="texto-caracteristicas">
+            <div class="texto-caracteristicas-interior">
+                <h1>Únete a nuestra comunidad</h1>
+                <ul>
+                    <li>
+                        <img src="static/flecha-1.png" alt="" width="25px" height="25px">
+                        <div class="primera-caracteristica">
+                            <h3>Conéctate con nosotros</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                vitae velit proin justo, elementum siIn morbi</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="static/flecha-2.png" alt="" width="25px" height="25px">
+                        <div class="segunda-caracteristica">
+                            <h3>Comparte tu experiencia</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                vitae velit proin justo, elementum siIn morbi</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="static/flecha-3.png" alt="" width="25px" height="25px">
+                        <div class="tercera-caracteristica">
+                            <h3>Recomienda tu destino</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                vitae velit proin justo, elementum siIn morbi</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="recursos" id="Recursos">
+        <h1>Te probeemos los siguientes recursos</h1>
+        <!-- Cartilla 1 -->
+        <div class="cartilla">
+            <div class="cartilla-imagen">
+                <div class="cartilla-imagen-interior-1">
+                    <img src="static/img-cartilla-1.png" alt="">
+                </div>
+            </div>
+            <div class="cartilla-texto">
+                <h2>Guías de viaje</h2>
+                <p>Lorem ipsum dolor sit amet ecte adipiscing elitIpsum.</p>
+            </div>
+        </div>
 
-        <!-- Botón de Iniciar sesión -->
-        <a href="iniciar_sesion.html">
-            <button class="btn" onclick="location.href='iniciar_sesion.html'">Iniciar Sesión</button>
-        </a>
+        <!-- Cartilla 2 -->
+        <div class="cartilla">
+            <div class="cartilla-imagen">
+                <div class="cartilla-imagen-interior-2">
+                    <img src="static/img-cartilla-2.png" alt="">
+                </div>
+            </div>
+            <div class="cartilla-texto">
+                <h2>Embalaje</h2>
+                <p>Lorem ipsum dolor sit amet ecte adipiscing elitIpsum.</p>
+            </div>
+        </div>
 
+        <!-- Cartilla 3 -->
+        <div class="cartilla">
+            <div class="cartilla-imagen">
+                <div class="cartilla-imagen-interior-3">
+                    <img src="static/img-cartilla-3.png" alt="">
+                </div>
+            </div>
+            <div class="cartilla-texto">
+                <h2>Visado</h2>
+                <p>Lorem ipsum dolor sit amet ecte adipiscing elitIpsum.</p>
+            </div>
+        </div>
 
-        <!-- Botón de Registro -->
-        <a href="registrarse.html">
-            <button class="btn" onclick="location.href='registrarse.html'">Registrarse</button>
-        </a>
-        
-        
-        <!-- Botón de Contraseña -->
-
-        <p><a href="olvidaste_contrasena.html" style="color: white;">¿Olvidaste tu contraseña?</a></p>
-        <p>Descubre, comparte y vive aventuras únicas</p>
-        <!-- [TODOOO] Agregar call to action e imagen o corregit fondo -->
-    </div>
+        <!-- Cartilla 4 -->
+        <div class="cartilla">
+            <div class="cartilla-imagen">
+                <div class="cartilla-imagen-interior-4">
+                    <img src="static/img-cartilla-4.png" alt="">
+                </div>
+            </div>
+            <div class="cartilla-texto">
+                <h2>Seguridad</h2>
+                <p>Lorem ipsum dolor sit amet ecte adipiscing elitIpsum.</p>
+            </div>
+        </div>
+    </section>
+    <section class="acerca-de" id="Acerca">
+        <h2>Conoce más acerca de nosotros</h2>
+        <div class="cartillas">
+            <div class="cartillas-texto">
+                <div class="cartilla-startup">
+                    <h3>Startup</h3>
+                    <p>Somos un apasionado grupo de cinco jóvenes talentos de la Universidad Peruana de Ciencias Aplicadas, todos cursando la carrera de Ciencias de la Computación e Ingeniería de Software. Unidos por nuestra pasión por la tecnología y el deseo de hacer que los viajes sean más emocionantes y accesibles, hemos creado una innovadora startup.</p>
+                </div>
+                <div class="cartilla-plataforma">
+                    <h3>Plataforma</h3>
+                    <p>Esta plaataforma tiene la opción de crear perfiles personalizados, subir fotos y relatos sobre sus aventuras, así como la participación en fotos de discusión variados, brindamos a nuestros usuarios la oportunidad de conectar con personas de mentalidad similar en todo el mundo. Además, con nuestra plataforma tienes la posibilidad de planificar tus viajes, ya que ofrecemos itinerarios personalizables y recursos para buscar vuelos y alojamiento, lo que facilita y desarrolla la organización de viajes</p>
+                </div>
+            </div>
+            <img src="static/cohete-acerca-de.png" alt="">
+        </div>
+    </section>
+    <section class="features" id="Features">
+        <h2>Features</h2>
+        <div class="cartillas-features">
+            <div class="cartilla-feature-interior-1">
+                <div class="cartilla-1">
+                    <img src="static/rectangle-1.png" alt="">
+                    <div class="parrafo-cartilla">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placerat fermentum, enim vel adipiscing non. Lacus, nunc, at et vel 
+                            tellus dignissim quis.</p>
+                    </div>
+                </div>
+                <div class="cartilla-2">
+                    <img src="static/rectangle-2.png" alt="">
+                    <div class="parrafo-cartilla">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placerat fermentum, enim vel adipiscing non. Lacus, nunc, at et vel 
+                            tellus dignissim quis.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cartilla-feature-interior-2">
+                <div class="cartilla-1">
+                    <img src="static/rectangle-3.png" alt="">
+                    <div class="parrafo-cartilla">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placerat fermentum, enim vel adipiscing non. Lacus, nunc, at et vel 
+                            tellus dignissim quis.</p>
+                    </div>
+                </div>
+                <div class="cartilla-2">
+                    <img src="static/rectangle-4.png" alt="">
+                    <div class="parrafo-cartilla">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placerat fermentum, enim vel adipiscing non. Lacus, nunc, at et vel 
+                            tellus dignissim quis.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cartilla-feature-interior-3">
+                <div class="cartilla-1">
+                    <img src="static/rectangle-5.png" alt="">
+                    <div class="parrafo-cartilla">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placerat fermentum, enim vel adipiscing non. Lacus, nunc, at et vel 
+                            tellus dignissim quis.</p>
+                    </div>
+                </div>
+                <div class="cartilla-2">
+                    <img src="static/rectangle-6.png" alt="">
+                    <div class="parrafo-cartilla">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placerat fermentum, enim vel adipiscing non. Lacus, nunc, at et vel 
+                            tellus dignissim quis.</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <footer class="footer" id="Contacto">
+        <section class="primera-seccion">
+            <div class="primera-seccion-interior">
+                <h2>Contáctanos en nuestras redes</h2>
+                <div class="redes">
+                    <div class="facebook">
+                        <a href="#" class=""><img src="./static/icon-park-outline_facebook.png" alt=""></a>
+                        <h3>Facebook</h3>
+                    </div>
+                    <div class="instagram">
+                        <a href="#" class=""><img src="./static/akar-icons_instagram-fill.png" alt=""></a>
+                        <h3>Instagram</h3>
+                    </div>
+                    <div class="twitter">
+                        <a href="#" class=""> <img src="./static/icon-park-outline_twitter.png" alt=""></a>
+                        <h3>Twitter</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="segunda-seccion">
+            <div class="boton-login-footer">
+                <a href="#" class="btn-login">Acceder</a>
+            </div>
+            <div class="ultima-linea">
+                <div class="texto-ultima-linea">
+                    <h3>Hecho por</h3>
+                </div>
+                <img src="static/goahead-color.png" alt="" width="100px">
+            </div>
+        </section>
+    </footer>
 </body>
 </html>
